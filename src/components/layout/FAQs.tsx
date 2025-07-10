@@ -7,7 +7,7 @@ export default function FAQs() {
       <div className="my-10">
         <h2 className="text-3xl font-bold tracking-tight leading-tight text-center mx-10 sm:text-5xl">Frequently Asked Questions</h2>
       </div>
-      <div className="mx-10 sm:mx-64 md:mx-32 sm:px-64">
+      <div className="mx-10 sm:mx-64 md:mx-32 lg:px-64">
         <Accordion type="single" collapsible className="w-full ">
           {FAQsData.map((item, index) => (
             <AccordionItem value={`item-${index}`} key={`item-${index}`}>
