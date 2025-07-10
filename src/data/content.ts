@@ -32,6 +32,7 @@ export const teamData = Array(2).fill([
     { name: "Muhammad Azka Ainur Rofiq", profilePicturePath: "azka.webp" },
     { name: "Raja Arkha Ibrahim", profilePicturePath: "raja.webp"},
     { name: "Nur Arif", profilePicturePath: "arif.webp"},
-    { name: "Tristan Rasya Saputra", profilePicturePath: "tristan.webp"}
+    { name: "Tristan Rasya Saputra", profilePicturePath: "tristan.webp"},
+    { name: "Kak Rasya", profilePicturePath: "kakrasya.webp"}
 ]).flat();
   
