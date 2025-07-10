@@ -23,11 +23,12 @@ export const FAQsData = [
     {question: "What skills can i learn in this extracurricular?", answer: "You can learn coding, electronics, teamwork, problem-solving, and how to build real IoT and robotics projects."}
 ]
 
-export const teamData = [
-    {name: "Muhammad Raihan Al Farizy", profilePicturePath: "raihan.webp"},
-    {name: "Kim Minji", profilePicturePath: "minji.webp"},
-    {name: "Azriel Bagas Laksamono", profilePicturePath: "azriel.webp"},
-    {name: "Nur Aulia Ramadhan", profilePicturePath: "nuraul.webp"},
-    {name: "Kenzie", profilePicturePath: "kenzie.webp"},
-    {name: "Muhammad Azka Ainur Rofiq", profilePicturePath: "azka.webp"}
-]
+export const teamData = Array(3).fill([
+    { name: "Muhammad Raihan Al Farizy", profilePicturePath: "raihan.webp" },
+    { name: "Kim Minji", profilePicturePath: "minji.webp" },
+    { name: "Azriel Bagas Laksamono", profilePicturePath: "azriel.webp" },
+    { name: "Nur Aulia Ramadhan", profilePicturePath: "nuraul.webp" },
+    { name: "Kenzie", profilePicturePath: "kenzie.webp" },
+    { name: "Muhammad Azka Ainur Rofiq", profilePicturePath: "azka.webp" },
+]).flat();
+  

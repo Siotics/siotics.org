@@ -1,56 +1,17 @@
-"use client"
+"use client";
 
-import { Badge } from "@/components/ui/badge"
-import { Card } from "@/components/ui/card"
-import { Bot } from "lucide-react"
-import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern"
-import { cn } from "@/lib/utils"
-import { useEffect, useState } from "react"
-
-interface TimeLeft {
-  days: number
-  hours: number
-  minutes: number
-  seconds: number
-}
+import { Badge } from "@/components/ui/badge";
+import { Bot } from "lucide-react";
+import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
+import { cn } from "@/lib/utils";
+import CountdownTimer from "../ui/CountdownTimer";
 
 export default function Hero() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null)
-
-  useEffect(() => {
-    const targetDate = new Date('2025-07-18T07:00:00')
-
-    const calculateTimeLeft = (): TimeLeft => {
-      const now = new Date().getTime()
-      const distance = targetDate.getTime() - now
-
-      if (distance > 0) {
-        return {
-          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((distance % (1000 * 60)) / 1000),
-        }
-      } else {
-        return { days: 0, hours: 0, minutes: 0, seconds: 0 }
-      }
-    }
-
-    setTimeLeft(calculateTimeLeft())
-
-    const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft())
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [])
-
-  if (!timeLeft) {
-    return null
-  }
-
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden border-gray-600/20 border-b" id="home">
+    <div
+      className="relative min-h-screen bg-black text-white overflow-hidden border-gray-600/20 border-b"
+      id="home"
+    >
       {/* Background */}
       <AnimatedGridPattern
         numSquares={30}
@@ -97,49 +58,19 @@ export default function Hero() {
                 Build cool stuff
               </span>
             </h1>
-            <p className="text-xl sm:text-2xl text-white/75 max-w-2xl mx-auto">
-              Be part of State Vocational High School 1 Jakarta{"'"}s coolest tech club ⚙️🤖
-            </p>
+            <h3 className="text-xl sm:text-2xl text-white/75 max-w-2xl mx-auto">
+              Be part of State Vocational High School 1 Jakarta{"'"}s coolest
+              tech club ⚙️🤖
+            </h3>
           </div>
 
           {/* Countdown Timer */}
-<div className="space-y-6">
-  <p className="text-gray-400">Registration opens in</p>
-  <div
-    className={cn(
-      // default layout for >370px
-      "flex justify-center flex-wrap gap-4",
-      // switch to grid for <370px
-      "max-[370px]:grid max-[370px]:grid-cols-2 max-[370px]:gap-4",
-      // center grid itself
-      "max-[370px]:w-max max-[370px]:mx-auto"
-    )}
-  >
-    {[
-      { value: timeLeft.days, label: "DAYS" },
-      { value: timeLeft.hours, label: "HRS" },
-      { value: timeLeft.minutes, label: "MIN" },
-      { value: timeLeft.seconds, label: "SEC" },
-    ].map((item, index) => (
-      <Card
-        key={index}
-        className="bg-white/10 border-white/30 p-2 w-18 h-18 sm:h-20 sm:w-20 backdrop-blur-md hover:bg-white/15 transition-all"
-      >
-        <div className="text-center h-full flex flex-col justify-center">
-          <div className="sm:text-2xl text-xl font-bold text-white">
-            {item.value.toString().padStart(2, "0")}
+          <div className="space-y-6">
+            <p className="text-gray-400">Registration opens in</p>
+            <CountdownTimer />
           </div>
-          <div className="text-xs text-gray-400 mt-1">
-            {item.label}
-          </div>
-        </div>
-      </Card>
-    ))}
-  </div>
-</div>
-
         </div>
       </div>
     </div>
-  )
+  );
 }
