@@ -4,9 +4,16 @@ import { Badge } from "@/components/ui/badge";
 import { Bot } from "lucide-react";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
 import { cn } from "@/lib/utils";
+import { Button } from "../ui/button";
+import Link from "next/link"
 import CountdownTimer from "../ui/CountdownTimer";
+import { useCountdown } from "@/hooks/useCountdown";
+import { targetDate } from "@/data/constants";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export default function Hero() {
+  const { isEnded } = useCountdown(targetDate)
+  const isMobile = useIsMobile()
   return (
     <div
       className="relative min-h-screen bg-black text-white overflow-hidden border-gray-600/20 border-b"
@@ -58,17 +65,32 @@ export default function Hero() {
                 Build cool stuff
               </span>
             </h1>
-            <h3 className="text-xl sm:text-2xl text-white/75 max-w-2xl mx-auto">
-              Be part of State Vocational High School 1 Jakarta{"'"}s coolest
-              tech club ⚙️🤖
+            <h3 className="text-xl sm:text-2xl text-white/75 max-w-4xl mx-auto">
+              Be part of State Vocational High School 1 Jakarta{"'"}s coolest tech club ⚙️🤖
             </h3>
           </div>
 
           {/* Countdown Timer */}
+          {!isEnded && (  
           <div className="space-y-6">
-            <p className="text-gray-400">Registration opens in</p>
+            <p className="text-gray-400">{"Registration opens in"}</p>
             <CountdownTimer />
           </div>
+         )}
+
+         {isEnded && (
+          <div className={(!isMobile) ? "hidden" : "space-y-6"}>
+          <p className="text-gray-400">{"Open Registration!"}</p>
+          <div className="flex max-w-full w-max justify-center items-center gap-3 mx-auto">
+            <Button asChild size={"lg"} className=" bg-blue-600 hover:bg-blue-700 text-white group shadow-lg shadow-blue-600/25 ">
+              <Link href="https://portal.siotics.org">Click to Apply!</Link>
+            </Button>
+            <Button asChild size={"lg"} className="" variant={"default"}><Link href={"/#activities"}>Learn More</Link></Button>
+          </div>
+          
+          {/* <CountdownTimer /> */}
+        </div>
+         )}
         </div>
       </div>
     </div>

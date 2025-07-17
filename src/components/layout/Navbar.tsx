@@ -5,16 +5,21 @@ import GetNotifiedButton from "../ui/GetNotifiedButton"
 import { Menu, X } from "lucide-react"
 import { useState } from "react"
 import Image from "next/image"
+import { useCountdown } from "@/hooks/useCountdown"
+import { targetDate } from "@/data/constants"
+import ApplyNowButton from "../ui/ApplyNowButton"
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+  const { isEnded } = useCountdown(targetDate)
   const navItems = [
     { name: "Home", href: "#home" },
     { name: "Activities", href: "#activities" },
     { name: "About", href: "#about" },
     { name: "FAQs", href: "#faqs" },
   ]
+
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
@@ -50,7 +55,11 @@ export default function Navigation() {
 
           {/* Get Notified Button */}
           
-          <GetNotifiedButton className="md:flex hidden"/>
+          { isEnded ? (
+                 <ApplyNowButton className="md:flex hidden"></ApplyNowButton>
+              ) : (
+                <GetNotifiedButton className="md:flex hidden"></GetNotifiedButton>
+              )}
 
           {/* Mobile menu button */}
           <div className="md:hidden">
@@ -79,7 +88,12 @@ export default function Navigation() {
                   {item.name}
                 </a>
               ))}
-              <GetNotifiedButton className="w-full"></GetNotifiedButton>
+              { isEnded ? (
+                 <ApplyNowButton className="w-full"></ApplyNowButton>
+              ) : (
+                <GetNotifiedButton className="w-full"></GetNotifiedButton>
+              )}
+             
             </div>
           </div>
         )}
