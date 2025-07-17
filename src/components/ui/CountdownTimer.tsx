@@ -1,16 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useCountdown } from "@/hooks/useCountdown"; 
 import { targetDate } from "@/data/constants";
-
-interface TimeLeft {
-  days: number;
-  hours: number;
-  minutes: number;
-  seconds: number;
-}
 
 export default function CountdownTimer() {
   
